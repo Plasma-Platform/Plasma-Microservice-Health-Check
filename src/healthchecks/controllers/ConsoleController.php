@@ -1,6 +1,5 @@
 <?php
 /**
- * @author Alexander Stepanenko <alex.stepanenko@gmail.com>
  * @package templatemonster\healthchecks
  */
 

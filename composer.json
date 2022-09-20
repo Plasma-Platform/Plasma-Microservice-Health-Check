@@ -4,25 +4,32 @@
   "keywords": ["rest", "yii2", "microservices", "api"],
   "type": "package",
   "license": "MIT",
-  "authors": [
-    {
-      "name": "Alexander Stepanenko",
-      "email": "alex.stepanenko@gmail.com"
-    }
-  ],
   "autoload": {
     "psr-4": {
-      "indigerd\\rest\\": "src/rest"
-    }
-  },
-  "autoload": {
-    "psr-4": {
+      "indigerd\\rest\\": "src/rest",
       "templatemonster\\healthchecks\\": "src/healthchecks"
     }
   },
+  "repositories":[
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
   "require": {
-    "php": ">=5.5.0",
-    "yiisoft/yii2": "*",
+    "php": ">=7.4.0",
+    "guzzlehttp/guzzle": "^7.*",
+    "yiisoft/yii2": "^2.0.42",
     "indigerd/yii2-rest": "*"
+  },
+  "config": {
+    "process-timeout": 1800,
+    "fxp-asset": {
+      "enabled": false
+    },
+    "sort-packages": true,
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true
+    }
   }
 }

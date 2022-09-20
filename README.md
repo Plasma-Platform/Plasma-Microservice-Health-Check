@@ -15,6 +15,14 @@ for example
             'checks'=> [
                 'db',
                 'cache',
+                'mongodb',
+                'rabbitmq' = > 'queue',
+                'elasticsearch',
+                'urls' => [
+                    'name1' => 'http://ukr1',
+                    'name2' => 'http://ukr2',
+                ]
+                ,
                 'custom' => function() {
                     return (2 + 2 == 4);
                 };
