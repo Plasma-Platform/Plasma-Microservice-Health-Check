@@ -24,7 +24,7 @@ class Module extends \yii\base\Module
         foreach ($this->checks as $key => $val) {
             $args = null;
             if (!is_callable($val)) {
-                if (!is_array($val)) {
+                if (is_numeric($key)) {
                     $key = $val;
                 } else {
                     $args = $val;
@@ -81,10 +81,14 @@ class Module extends \yii\base\Module
         return $result;
     }
 
-    public function checkDb()
+    public function checkDb($dbName = null)
     {
         try {
-            $connection = Yii::$app->db;
+            if ($dbName) {
+                $connection = \Yii::$app->get($dbName);
+            } else {
+                $connection = Yii::$app->db;
+            }
             $connection->open();
             if ($connection->pdo !== null) {
                 return true;
@@ -95,10 +99,14 @@ class Module extends \yii\base\Module
         return false;
     }
 
-    public function checkCache()
+    public function checkCache($cacheName = null)
     {
         try {
-            $cache = Yii::$app->cache;
+            if ($cacheName) {
+                $cache = \Yii::$app->get($cacheName);
+            } else {
+                $cache = Yii::$app->cache;
+            }
             return $cache->set('healthcheck', 1);
         } catch (\Exception $e) {
             Yii::error($e);
@@ -106,11 +114,15 @@ class Module extends \yii\base\Module
         return false;
     }
 
-    public function checkMongodb()
+    public function checkMongodb($mongodbName = null)
     {
         try {
             /** @var \yii\mongodb\Connection $connection */
-            $connection = \Yii::$app->mongodb;
+            if ($mongodbName) {
+                $connection = \Yii::$app->get($mongodbName);
+            } else {
+                $connection = \Yii::$app->mongodb;
+            }
             $connection->open();
             return $connection->getIsActive();
         } catch (\Exception $e) {
@@ -119,10 +131,15 @@ class Module extends \yii\base\Module
         }
     }
 
-    public function checkRabbitmq()
+    public function checkRabbitmq($queueName = null)
     {
         try {
-            return \Yii::$app->queue
+            if ($queueName) {
+                $queue = \Yii::$app->get($queueName);
+            } else {
+                $queue = \Yii::$app->queue;
+            }
+            return $queue
                 ->getContext()
                 ->getLibChannel()
                 ->is_open();
@@ -132,11 +149,15 @@ class Module extends \yii\base\Module
         }
     }
 
-    public function checkElasticsearch()
+    public function checkElasticsearch($elasticsearchName = null)
     {
         try {
             /** @var \yii\elasticsearch\Connection $connection */
-            $connection = \Yii::$app->elasticsearch;
+            if ($elasticsearchName){
+                $connection = \Yii::$app->get($elasticsearchName);
+            } else {
+                $connection = \Yii::$app->elasticsearch;
+            }
             $connection->open();
             if ($connection->getIsActive()) {
                 return true;

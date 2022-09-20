@@ -16,7 +16,7 @@ for example
                 'db',
                 'cache',
                 'mongodb',
-                'Rabbitmq',
+                'rabbitmq' = > 'queue',
                 'elasticsearch',
                 'urls' => [
                     'name1' => 'http://ukr1',
