@@ -18,7 +18,7 @@
   ],
   "require": {
     "php": ">=7.4.0",
-    "guzzlehttp/guzzle": "^7.*",
+    "guzzlehttp/guzzle": "^7.3",
     "yiisoft/yii2": "^2.0.42",
     "indigerd/yii2-rest": "*"
   },
