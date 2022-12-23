@@ -40,7 +40,7 @@ class ApiController extends Controller
         );
         $result = $module->doHealthChecks();
         if (!$module->getHealth()) {
-            Yii::$app->response->setStatusCode(424);
+            Yii::$app->response->setStatusCode(503);//'Service Unavailable',
         }
         return $result;
     }
