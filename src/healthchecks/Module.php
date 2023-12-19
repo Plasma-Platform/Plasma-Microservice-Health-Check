@@ -9,7 +9,6 @@ use Yii;
 use GuzzleHttp\Client;
 use GuzzleHttp\Promise\Utils;
 use GuzzleHttp\Psr7\Response;
-use templatemonster\healthchecks\models\HealthCheck;
 
 class Module extends \yii\base\Module
 {
@@ -63,19 +62,13 @@ class Module extends \yii\base\Module
                     if (!$check) {
                         $this->health = false;
                     }
-                    $model = new HealthCheck;
-                    $model->name = $checkName;
-                    $model->passed = $check;
-                    $result[] = $model;
+                    $result[$checkName] = $check;
                 }
             } else {
                 if (!$checkResult) {
                     $this->health = false;
                 }
-                $model = new HealthCheck;
-                $model->name = $name;
-                $model->passed = $checkResult;
-                $result[] = $model;
+                $result[$name] = $checkResult;
             }
         }
         $package = \Composer\InstalledVersions::getRootPackage();
