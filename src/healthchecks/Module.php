@@ -78,6 +78,8 @@ class Module extends \yii\base\Module
                 $result[] = $model;
             }
         }
+        $package = \Composer\InstalledVersions::getRootPackage();
+        $result['version'] = $package['pretty_version'] ?? '%VERSION%';
         return $result;
     }
 
