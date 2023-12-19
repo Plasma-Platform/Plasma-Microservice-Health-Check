@@ -3,7 +3,7 @@
   "description": "HTTP and console health checks for microservices",
   "keywords": ["rest", "yii2", "microservices", "api"],
   "type": "package",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "autoload": {
     "psr-4": {
